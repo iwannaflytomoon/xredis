@@ -146,7 +146,7 @@ void test_get()
 
     char szKey[256] = {0};
     {
-        strcpy(szKey, "test");
+        strcpy(szKey, "kenan");
         RedisDBIdx dbi(&xClient);
         bool bRet = dbi.CreateDBIndex(szKey, APHash, CACHE_TYPE_1);
         if (bRet) {
@@ -196,7 +196,7 @@ void test_getrange()
 void test_exists()
 {
     char szKey[256] = {0};
-    strcpy(szKey, "test");
+    strcpy(szKey, "kenan");
     RedisDBIdx dbi(&xClient);
     bool bRet = dbi.CreateDBIndex(szKey, APHash, CACHE_TYPE_1);
     if (bRet) {
@@ -294,33 +294,18 @@ int main(int argc, char **argv)
     xClient.Init(3);
 
     RedisNode RedisList1[3] = {
-        {0, "127.0.0.1", 6379, "", 2, 5},
-        {1, "127.0.0.1", 6379, "", 2, 5},
-        {2, "127.0.0.1", 6379, "", 2, 5}
+        {0, "10.44.144.77", 6379, "", 2, 5},
+        {1, "10.44.144.77", 6379, "", 2, 5},
+        {2, "10.44.144.77", 6379, "", 2, 5}
     };
 
     xClient.ConnectRedisCache(RedisList1, 3, CACHE_TYPE_1);
 
-    test_set("test", "wwww");
+    test_set("kenan", "kenan123456");
     test_get();
     test_getrange();
-    test_exists();
-    test_del();
-    test_hset();
-    test_mset();
-    test_mget();
-    test_append();
-
-    test_decr();
-    test_decrby();
-    test_incr();
-    test_incrby();
-
-    //int n = 10;
-    //while (n--) {
-    //    xClient.KeepAlive();
-    //    usleep(1000*1000*10);
-    //}
+    test_hmset();
+    test_hgetall();
 
     xClient.release();
 
