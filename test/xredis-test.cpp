@@ -34,9 +34,9 @@ void test_set(const char *strkey, const char *strValue)
     bool bRet = dbi.CreateDBIndex(strkey, APHash, CACHE_TYPE_1);
     if (bRet) {
         if (xClient.set(dbi, strkey, strValue)) {
-            printf("%s success \r\n", __PRETTY_FUNCTION__);
+            printf("%s success \n", __PRETTY_FUNCTION__);
         } else {
-            printf("%s error [%s] \r\n", __PRETTY_FUNCTION__, dbi.GetErrInfo());
+            printf("%s error [%s] \n", __PRETTY_FUNCTION__, dbi.GetErrInfo());
         }
     }
 }
@@ -50,9 +50,9 @@ void test_append()
     bool bRet = dbi.CreateDBIndex(szKey, APHash, CACHE_TYPE_1);
     if (bRet) {
         if (xClient.append(dbi, szKey, " xsky")) {
-            printf("%s success \r\n", __PRETTY_FUNCTION__);
+            printf("%s success \n", __PRETTY_FUNCTION__);
         } else {
-            printf("%s error [%s] \r\n", __PRETTY_FUNCTION__, dbi.GetErrInfo());
+            printf("%s error [%s] \n", __PRETTY_FUNCTION__, dbi.GetErrInfo());
         }
     }
 }
@@ -68,12 +68,12 @@ void test_decr()
         int64_t res = 0;
         if (xClient.decr(dbi, szKey, res)) {
             if (res == 99) {
-                printf("%s success %d \r\n", __PRETTY_FUNCTION__, res);
+                printf("%s success %ld \n", __PRETTY_FUNCTION__, res);
             } else {
-                printf("%s error [%s] \r\n", __PRETTY_FUNCTION__, dbi.GetErrInfo());
+                printf("%s error [%s] \n", __PRETTY_FUNCTION__, dbi.GetErrInfo());
             }
         } else {
-            printf("%s error [%s] \r\n", __PRETTY_FUNCTION__, dbi.GetErrInfo());
+            printf("%s error [%s] \n", __PRETTY_FUNCTION__, dbi.GetErrInfo());
         }
     }
 }
@@ -89,12 +89,12 @@ void test_decrby()
         int64_t res = 0;
         if (xClient.decrby(dbi, szKey, 11, res)) {
             if (res == 89) {
-                printf("%s success %d \r\n", __PRETTY_FUNCTION__, res);
+                printf("%s success %ld \n", __PRETTY_FUNCTION__, res);
             } else {
-                printf("%s error [%s] \r\n", __PRETTY_FUNCTION__, dbi.GetErrInfo());
+                printf("%s error [%s] \n", __PRETTY_FUNCTION__, dbi.GetErrInfo());
             }
         } else {
-            printf("%s error [%s] \r\n", __PRETTY_FUNCTION__, dbi.GetErrInfo());
+            printf("%s error [%s] \n", __PRETTY_FUNCTION__, dbi.GetErrInfo());
         }
     }
 }
@@ -110,12 +110,12 @@ void test_incr()
         int64_t res = 0;
         if (xClient.incr(dbi, szKey, res)) {
             if (res == 101) {
-                printf("%s success %d \r\n", __PRETTY_FUNCTION__, res);
+                printf("%s success %ld \n", __PRETTY_FUNCTION__, res);
             } else {
-                printf("%s error [%s] \r\n", __PRETTY_FUNCTION__, dbi.GetErrInfo());
+                printf("%s error [%s] \n", __PRETTY_FUNCTION__, dbi.GetErrInfo());
             }
         } else {
-            printf("%s error [%s] \r\n", __PRETTY_FUNCTION__, dbi.GetErrInfo());
+            printf("%s error [%s] \n", __PRETTY_FUNCTION__, dbi.GetErrInfo());
         }
     }
 }
@@ -131,12 +131,12 @@ void test_incrby()
         int64_t res = 0;
         if (xClient.incrby(dbi, szKey, 11, res)) {
             if (res == 111) {
-                printf("%s success %d \r\n", __PRETTY_FUNCTION__, res);
+                printf("%s success %ld \n", __PRETTY_FUNCTION__, res);
             } else {
-                printf("%s error [%s] \r\n", __PRETTY_FUNCTION__, dbi.GetErrInfo());
+                printf("%s error [%s] \n", __PRETTY_FUNCTION__, dbi.GetErrInfo());
             }
         } else {
-            printf("%s error [%s] \r\n", __PRETTY_FUNCTION__, dbi.GetErrInfo());
+            printf("%s error [%s] \n", __PRETTY_FUNCTION__, dbi.GetErrInfo());
         }
     }
 }
@@ -152,9 +152,9 @@ void test_get()
         if (bRet) {
             string strData;
             if (xClient.get(dbi, szKey, strData)) {
-                printf("%s success data:%s \r\n", __PRETTY_FUNCTION__, strData.c_str());
+                printf("%s success data:%s \n", __PRETTY_FUNCTION__, strData.c_str());
             } else {
-                printf("%s error [%s] \r\n", __PRETTY_FUNCTION__, dbi.GetErrInfo());
+                printf("%s error [%s] \n", __PRETTY_FUNCTION__, dbi.GetErrInfo());
             }
         }
     }
@@ -167,9 +167,9 @@ void test_get()
         if (bRet) {
             string strData;
             if (xClient.get(dbi, szKey, strData)) {
-                printf("%s error data:%s \r\n", __PRETTY_FUNCTION__, strData.c_str());
+                printf("%s error data:%s \n", __PRETTY_FUNCTION__, strData.c_str());
             } else {
-                printf("%s success [%s] \r\n", __PRETTY_FUNCTION__, dbi.GetErrInfo());
+                printf("%s success [%s] \n", __PRETTY_FUNCTION__, dbi.GetErrInfo());
             }
         }
     }
@@ -186,9 +186,9 @@ void test_getrange()
     if (bRet) {
         string strData;
         if (xClient.getrange(dbi, szKey, 2, 6, strData)) {
-            printf("%s success data:%s \r\n", __PRETTY_FUNCTION__, strData.c_str());
+            printf("%s success data:%s \n", __PRETTY_FUNCTION__, strData.c_str());
         } else {
-            printf("%s error [%s] \r\n", __PRETTY_FUNCTION__, dbi.GetErrInfo());
+            printf("%s error [%s] \n", __PRETTY_FUNCTION__, dbi.GetErrInfo());
         }
     }
 }
@@ -201,9 +201,9 @@ void test_exists()
     bool bRet = dbi.CreateDBIndex(szKey, APHash, CACHE_TYPE_1);
     if (bRet) {
         if (xClient.exists(dbi, szKey)) {
-            printf("%s success \r\n", __PRETTY_FUNCTION__);
+            printf("%s success \n", __PRETTY_FUNCTION__);
         } else {
-            printf("%s error [%s] \r\n", __PRETTY_FUNCTION__, dbi.GetErrInfo());
+            printf("%s error [%s] \n", __PRETTY_FUNCTION__, dbi.GetErrInfo());
         }
     }
 }
@@ -216,9 +216,9 @@ void test_del()
     bool bRet = dbi.CreateDBIndex(szKey, APHash, CACHE_TYPE_1);
     if (bRet) {
         if (xClient.del(dbi, szKey)) {
-            printf("%s success \r\n", __PRETTY_FUNCTION__);
+            printf("%s success \n", __PRETTY_FUNCTION__);
         } else {
-            printf("%s error [%s] \r\n", __PRETTY_FUNCTION__, dbi.GetErrInfo());
+            printf("%s error [%s] \n", __PRETTY_FUNCTION__, dbi.GetErrInfo());
         }
     }
 }
@@ -240,9 +240,9 @@ void test_mset()
     }
 
     if (xClient.mset(vdbi, kvData)) {
-        printf("%s success \r\n", __PRETTY_FUNCTION__);
+        printf("%s success \n", __PRETTY_FUNCTION__);
     } else {
-        printf("%s error [%s] \r\n", __PRETTY_FUNCTION__, "mset error");
+        printf("%s error [%s] \n", __PRETTY_FUNCTION__, "mset error");
     }
 }
 
@@ -261,13 +261,13 @@ void test_mget()
     }
 
     if (xClient.mget(vdbi, kData, Reply)) {
-        printf("%s success %d \r\n", __PRETTY_FUNCTION__, Reply.size());
+        printf("%s success %d \n", __PRETTY_FUNCTION__, Reply.size());
         ReplyData::iterator iter = Reply.begin();
         for (; iter != Reply.end(); iter++) {
-            printf("%d\t%s\r\n", (*iter).type, (*iter).str.c_str());
+            printf("%d\t%s\n", (*iter).type, (*iter).str.c_str());
         }
     } else {
-        printf("%s error [%s] \r\n", __PRETTY_FUNCTION__, "mset error");
+        printf("%s error [%s] \n", __PRETTY_FUNCTION__, "mset error");
     }
 }
 
@@ -280,9 +280,9 @@ void test_hset()
     if (bRet) {
         int64_t count = 0;
         if (xClient.hset(dbi, szHKey, "BILLURL", "http://www.baidu.com/cpro.php?abcdefg", count)) {
-            printf("%s success \r\n", __PRETTY_FUNCTION__);
+            printf("%s success \n", __PRETTY_FUNCTION__);
         } else {
-            printf("%s error [%s] \r\n", __PRETTY_FUNCTION__, dbi.GetErrInfo());
+            printf("%s error [%s] \n", __PRETTY_FUNCTION__, dbi.GetErrInfo());
         }
     }
 }
@@ -296,7 +296,7 @@ void test_hget()
     if (bRet) {
         string strData;
         if (xClient.hget(dbi, szHKey, "BILLURL", strData)) {
-            printf("%s success data:\n", __PRETTY_FUNCTION__, strData.c_str());
+            printf("%s success data:%s\n", __PRETTY_FUNCTION__, strData.c_str());
         } else {
             printf("%s error [%s] \n", __PRETTY_FUNCTION__, dbi.GetErrInfo());
         }
@@ -306,13 +306,14 @@ void test_hget()
 int main(int argc, char **argv)
 {
 
-    xClient.Init(1);
+    xClient.Init(2);
 
-    RedisNode RedisList1[1] = {
-        {0, "10.44.144.77", 6379, "", 2, 5}
+    RedisNode RedisList1[2] = {
+        {0, "10.44.144.77", 6379, "", 2, 5},
+        {1, "10.44.144.77", 6379, "", 2, 5}
     };
 
-    xClient.ConnectRedisCache(RedisList1, 1, CACHE_TYPE_1);
+    xClient.ConnectRedisCache(RedisList1, 2, CACHE_TYPE_1);
 
     test_getrange();
     test_hset();
