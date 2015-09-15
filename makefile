@@ -72,7 +72,7 @@ xredis-example: examples/xredis-example.cpp $(STLIBNAME)
 examples: $(EXAMPLES)
 
 xredis-test: test/xredis-test.cpp $(STLIBNAME)
-	$(CC) -o test/$@ $(REAL_CFLAGS) $(REAL_LDFLAGS)  -I. -L./ $< $(STLIBNAME) -lhiredis -lpthread
+	$(CC) -g -o test/$@ $(REAL_CFLAGS) $(REAL_LDFLAGS)  -I. -L./ -L../hiredis/lib/ $< $(STLIBNAME) -lhiredis -lpthread
 
 test: xredis-test
 	./test/xredis-test
@@ -81,7 +81,7 @@ test: xredis-test
 	$(CC)  -c $(REAL_CFLAGS) $<
 
 clean:
-	rm -rf $(DYLIBNAME) $(STLIBNAME) $(TESTS) examples/example* *.o
+	rm -rf $(DYLIBNAME) $(STLIBNAME) $(TESTS) examples/example* *.o test/$(TESTS)
 
 dep:
 	$(CC) -MM *.cpp

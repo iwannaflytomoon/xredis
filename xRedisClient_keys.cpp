@@ -100,6 +100,13 @@ bool xRedisClient::ttl(const RedisDBIdx& dbi, const string& key, int64_t &second
     return command_integer(dbi, seconds, "TTL %s", key.c_str());
 }
 
+bool xRedisClient::type(const RedisDBIdx& dbi, const string& key, string& value) {
+    if (0 == key.length()) {
+        return false;
+    }
+    return command_string(dbi, value, "TYPE %s", key.c_str());
+}
+
 bool xRedisClient::randomkey(const RedisDBIdx& dbi, KEY& key){
     return command_string(dbi, key, "RANDOMKEY");
 }

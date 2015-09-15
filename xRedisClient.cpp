@@ -1,6 +1,7 @@
 /*
  * ----------------------------------------------------------------------------
  * Copyright (c) 2013-2014, xSky <guozhw at gmail dot com>
+ * Modified by kenan <iwannaflytomoon at gmail dot com>
  * All rights reserved.
  * Distributed under GPL license.
  * ----------------------------------------------------------------------------
@@ -81,7 +82,8 @@ xRedisClient::~xRedisClient()
 bool xRedisClient::Init(unsigned int maxtype) {
     if(NULL==mRedisPool) {
         mRedisPool = new RedisPool;
-        mRedisPool->Init(maxtype);
+        if (mRedisPool)
+            mRedisPool->Init(maxtype);
         return mRedisPool!=NULL;
     }
     return false;

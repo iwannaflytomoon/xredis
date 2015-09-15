@@ -1,6 +1,7 @@
 /*
  * ----------------------------------------------------------------------------
  * Copyright (c) 2013-2014, xSky <guozhw at gmail dot com>
+ * modified by kenan <iwannaflytomoon at gmail dot com>
  * All rights reserved.
  * Distributed under GPL license.
  * ----------------------------------------------------------------------------
@@ -196,7 +197,7 @@ public:
         const SORTODER order = ASC, const char* destination = NULL);
 
     /* TTL          */  bool ttl(const RedisDBIdx& dbi, const string& key, int64_t& seconds);
-    /* TYPE         */  
+    /* TYPE         */  bool type(const RedisDBIdx& dbi, const string& key, string& value);
 
 
     /* HDEL         */  bool hdel(const RedisDBIdx& dbi,    const string& key, const string& filed, int64_t& num);

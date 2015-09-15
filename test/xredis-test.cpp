@@ -274,12 +274,12 @@ void test_mget()
 void test_hset()
 {
     char szHKey[256] = {0};
-    strcpy(szHKey, "hashtest");
+    strcpy(szHKey, "pvid1_ip1");
     RedisDBIdx dbi(&xClient);
     bool bRet = dbi.CreateDBIndex(szHKey, APHash, CACHE_TYPE_1);
     if (bRet) {
         int64_t count = 0;
-        if (xClient.hset(dbi, szHKey, "filed1", "filed1_values", count)) {
+        if (xClient.hset(dbi, szHKey, "BILLURL", "http://www.baidu.com/cpro.php?abcdefg", count)) {
             printf("%s success \r\n", __PRETTY_FUNCTION__);
         } else {
             printf("%s error [%s] \r\n", __PRETTY_FUNCTION__, dbi.GetErrInfo());
@@ -287,25 +287,36 @@ void test_hset()
     }
 }
 
+void test_hget()
+{
+    char szHKey[256] = {0};
+    strcpy(szHKey, "pvid1_ip1");
+    RedisDBIdx dbi(&xClient);
+    bool bRet = dbi.CreateDBIndex(szHKey, APHash, CACHE_TYPE_1);
+    if (bRet) {
+        string strData;
+        if (xClient.hget(dbi, szHKey, "BILLURL", strData)) {
+            printf("%s success data:\n", __PRETTY_FUNCTION__, strData.c_str());
+        } else {
+            printf("%s error [%s] \n", __PRETTY_FUNCTION__, dbi.GetErrInfo());
+        }
+    }
+}
 
 int main(int argc, char **argv)
 {
 
-    xClient.Init(3);
+    xClient.Init(1);
 
-    RedisNode RedisList1[3] = {
-        {0, "10.44.144.77", 6379, "", 2, 5},
-        {1, "10.44.144.77", 6379, "", 2, 5},
-        {2, "10.44.144.77", 6379, "", 2, 5}
+    RedisNode RedisList1[1] = {
+        {0, "10.44.144.77", 6379, "", 2, 5}
     };
 
-    xClient.ConnectRedisCache(RedisList1, 3, CACHE_TYPE_1);
+    xClient.ConnectRedisCache(RedisList1, 1, CACHE_TYPE_1);
 
-    test_set("kenan", "kenan123456");
-    test_get();
     test_getrange();
-    test_hmset();
-    test_hgetall();
+    test_hset();
+    test_hget();
 
     xClient.release();
 
